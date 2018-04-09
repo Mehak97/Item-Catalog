@@ -1,0 +1,30 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+   { % block content % }
+	<div class="row">
+		<div class="col-md-10">
+                <h1>Restaurant Information</h1>
+        </div>
+        <div class="col-md-2" style='text-align: right;'> 
+             <a href='{{url_for('newRestaurant')}}'>Add a new Restaurant</a> 
+        </div>
+    </div>
+    
+         { % for restaurant in restaurants % }
+          <div class="row">
+               <div class="col-md-12">    	
+                        <p>{{restaurant.name}}</p>
+                        <p><a href='{{url_for('editRestaurant',restaurant_id=restaurant.id)}}'>Edit</a></p>
+                        <a href='{{url_for('deleteRestaurant',restaurant_id=restaurant.id)}}'>Delete</a>
+                </div>
+               </div>           
+         {% endfor %}         
+{ % endblock %}
+</body>
+</html>

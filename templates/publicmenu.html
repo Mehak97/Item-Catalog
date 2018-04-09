@@ -1,0 +1,110 @@
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body background="http://supperclub.lu/wp-content/uploads/revslider/portfolio-viewer/glavnimeni.jpg">
+
+{% block content %}
+
+	
+	<div class="row divider green">
+		<div class="col-md-8"></div>
+		<div class="col-md-4" style='text-align: center'>   
+           <a href='{{url_for('newMenuItem',restaurant_id=restaurant.id)}}'>Add a new Menu</a>
+        </div>
+	</div>
+	<hr>
+	<div class="row banner menu">
+		<div class="col-md-11 col-md-offset-1 padding-none" style='text-align: center;color:pink'>
+			<h1><u>{{ restaurant.name }}</u>
+			</h1>
+
+		</div>
+	</div>
+	<div class="row padding-top padding-bottom">
+		<div class="col-md-1"></div>
+		<div class="col-md-11 padding-none">
+			
+		</div>
+		<div class="col-md-7"></div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}
+					<ul>
+						{% for message in messages %}
+							 <li> <strong> {{ message }} </strong> </li>
+						{% endfor %}
+					</ul>
+				{% endif %}
+			{% endwith %}
+		</div>
+	</div>
+	{% if items !=[] %}	
+		<div class="row" style='color:IndianRed'>
+			<div class="col-md-3">
+				<h2><u><i>Appetizers</i></u></h2>
+					{% for i in items %}
+						{% if i.course == 'Appetizer' %}
+							<div class="menu-item">
+								<h3>{{i.name}}</h3>
+								<p>{{i.description}}</p>
+								<p class="menu-price">{{i.price}}</p>
+								<a href='{{url_for('editRestaurant',restaurant_id=restaurant.id)}}'>Edit</a>
+                  				<a href='{{url_for('deleteRestaurant',restaurant_id=restaurant.id)}}'>Delete</a>
+							</div>
+						{% endif %}
+					{% endfor %}
+			</div>
+			<div class="col-md-3">			
+				<h2><u><i>Entrees</i></u></h2>
+					{% for i in items %}
+						{% if i.course == 'Entree' %}
+						<div class="menu-item">
+							<h3>{{i.name}}</h3>
+							<p>{{i.description}}</p>
+							<p class="menu-price">{{i.price}}</p>
+							<a href='{{url_for('editRestaurant',restaurant_id=restaurant.id)}}'>Edit</a>
+                  			<a href='{{url_for('deleteRestaurant',restaurant_id=restaurant.id)}}'>Delete</a>
+						</div>
+						{% endif %}
+					{% endfor %}
+			</div>
+			<div class="col-md-3">
+				<h2><u><i>Desserts</i></u></h2>
+					{% for i in items %}
+						{% if i.course == 'Dessert' %}
+						<div class="menu-item">
+							<h3>{{i.name}}</h3>
+							<p>{{i.description}}</p>
+							<p class="menu-price">{{i.price}}</p>
+							<a href='{{url_for('editRestaurant',restaurant_id=restaurant.id)}}'>Edit</a>
+                  			<a href='{{url_for('deleteRestaurant',restaurant_id=restaurant.id)}}'>Delete</a>
+						</div>
+						{% endif %}
+					{% endfor %}
+			</div>
+			<div class="col-md-3">		
+				<h2><u><i>Beverages</i></u></h2>
+					{% for i in items %}
+						{% if i.course == 'Beverage' %}
+						<div class="menu-item">
+							<h3>{{i.name}}</h3>
+							<p>{{i.description}}</p>
+							<p class="menu-price">{{i.price}}</p>
+							<a href='{{url_for('editRestaurant',restaurant_id=restaurant.id)}}'>Edit</a>
+                  			<a href='{{url_for('deleteRestaurant',restaurant_id=restaurant.id)}}'>Delete</a>
+						</div>
+						{% endif %}
+					{% endfor %}
+			</div>		
+			</div>
+		</div>
+	{% endif %}
+{% endblock %}
+</body>
+</html>
