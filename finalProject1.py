@@ -32,7 +32,7 @@ app=Flask(__name__)
 
 CLIENT_ID=json.loads(open('client_secrets.json','r').read())['web']['client_id']
 
-engine=create_engine('sqlite:///restaurantmenuwithusers.db')
+engine=create_engine('postgresql://mehak:mehak@localhost/restaurants')
 Base.metadata.bind=engine
 DBSession=sessionmaker(bind=engine)
 session=DBSession()
